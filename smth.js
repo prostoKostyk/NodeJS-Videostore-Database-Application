@@ -1,0 +1,1 @@
+var cityList = JSON.parse( !{JSON.stringify(result});

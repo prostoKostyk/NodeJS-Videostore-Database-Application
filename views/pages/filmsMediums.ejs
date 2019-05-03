@@ -8,7 +8,6 @@
 <thead>
 <tr>
 <th style="width:1%; text-align:center">IdFilm</th>
-<th style="width:1%; text-align:center">IdMedium</th>
 <th style="width:30%">Фильм</th>
 <th style="width:30%">Тип носителя</th>
 <th style="width:30%">Стоимость</th>
@@ -24,7 +23,6 @@ if (filmsMediumsItems[i-1].IdFilm!==filmsMediumsItems[i].IdFilm){
     %>
 <tr> 
 <td  class="td1"><%= filmsMediumsItems[i-1].IdFilm %></td>
-<td  class="td2"><%= filmsMediumsItems[i-1].IdMedium %></td>
 <td  class="td2"><%= filmsMediumsItems[i-1].NameFilm %></td>
 <td  class="td2"><%= filmsMediumsItems[i-1].NameMediumFilms %></td>
 <td  class="td2"><%= filmsMediumsItems[i-1].Stoim %></td>
@@ -38,11 +36,10 @@ if (filmsMediumsItems[i-1].IdFilm!==filmsMediumsItems[i].IdFilm){
 }
 }); %>
 <tr> 
-<td  class="td1"><%= filmsMediumsItems[i-1].IdFilm %></td>
-<td  class="td2"><%= filmsMediumsItems[i-1].IdMedium %></td>
-<td  class="td2"><%= filmsMediumsItems[i-1].NameFilm %></td>
-<td  class="td2"><%= filmsMediumsItems[i-1].NameMediumFilms %></td>
-<td  class="td2"><%= filmsMediumsItems[i-1].Stoim %></td>
+    <td  class="td1"><%= filmsMediumsItems[i-1].IdFilm %></td>
+    <td  class="td2"><%= filmsMediumsItems[i-1].NameFilm %></td>
+    <td  class="td2"><%= filmsMediumsItems[i-1].NameMediumFilms %></td>
+    <td  class="td2"><%= filmsMediumsItems[i-1].Stoim %></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="">Изменить</a>
 <a href ="">Удалить</a>
@@ -59,18 +56,28 @@ if (filmsMediumsItems[i-1].IdFilm!==filmsMediumsItems[i].IdFilm){
   <select>
    
     <%
-      i=0;
-       filmsMediumsItems.forEach(function (item, index){  
-      i++;
+      i=1;
       k=0;
-      console.log(filmsMediumsItems.length);
-      console.log(i);
-      if (i<filmsMediumsItems.length){ 
-      if (filmsMediumsItems[i-1].MediumType!=filmsMediumsItems[0].MediumType){ 
-             
-         %> 
-        <option><%= item.MediumType %></option>
-        <% }}}); %>
+      k2=0;
+      function f(){ %> 
+        <option><%= filmsMediumsItems[i].MediumType %></option>
+         <%
+        i++;     
+       }; 
+      for (i=0;i<filmsMediumsItems.length; i++){
+        if (k2==0){
+          k2=1;
+          f();
+        }
+        else
+        {
+        if (filmsMediumsItems[i].IdMedium==filmsMediumsItems[0].IdMedium) {
+          break  }     
+         f(); 
+         k++;
+        }  
+      }
+      %>
       </select>
     </div> 
 <div class ="">

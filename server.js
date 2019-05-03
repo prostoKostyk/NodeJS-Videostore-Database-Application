@@ -25,7 +25,7 @@ password:'',
 database: 'videostore'
 });
 
-const siteTitle = "New simple application";
+const siteTitle = "Фильмы";
 const baseURL = "http://localhost:5000/";
 app.get('/', function (req, res){
 con.query('SELECT * FROM films', function (err, result){
@@ -33,6 +33,30 @@ res.render('pages/index',{
 siteTitle : siteTitle,
 pagesTitle : "Event list",
 items : result
+});
+});
+});
+
+const MediumsSiteTitle = "Носители";
+const MediumsURL = "http://localhost:5000/mediums";
+app.get('/mediums', function (MediumsReq, MediumsRes){
+con.query('SELECT *FROM mediums', function (MedioumsErr, MediumsResult){
+MediumsRes.render('pages/mediums',{
+MediumsSiteTitle : MediumsSiteTitle,
+MediumsTitle : "Event list",
+MediumsItems : MediumsResult
+});
+});
+});
+
+const filmsMediumsSiteTitle = "Фильмы на носителях";
+const filmsMediumsURL = "http://localhost:5000/filmsMediums";
+app.get('/filmsMediums', function (filmsMediumsReq, filmsMediumsRes){
+con.query('SELECT * FROM `filmsMediums`, `mediums`', function (filmsMediumsErr, filmsMediumsResult){
+filmsMediumsRes.render('pages/filmsMediums',{
+filmsMediumsSiteTitle : filmsMediumsSiteTitle,
+filmsMediumsTitle : "Event list",
+filmsMediumsItems : filmsMediumsResult,
 });
 });
 });
@@ -78,8 +102,7 @@ app.post('/element/edit/:IdFilm',function(req,res){
     });
 
     app.get('/element/delete/:IdFilm',function(req, res){
-        con.query("DELETE * FROM films WHERE IdFilm = '"+ req.params.IdFilm + "'", function(err, result){
-
+        con.query("DELETE FROM `videostore`.`films` WHERE (`IdFilm` = '"+req.params.IdFilm+"');", function(err, result){
         if (result.affectedRows){
             res.redirect(baseURL);
             }

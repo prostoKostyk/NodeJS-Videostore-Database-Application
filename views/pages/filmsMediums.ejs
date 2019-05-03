@@ -1,0 +1,83 @@
+<% include ../partials/style %>
+<% include ../stuff/UpMenu %>
+<br>
+<div class="=">
+<div class="col s12">
+<% if (filmsMediumsItems.length > 0) { %>
+<table class="table1"> 
+<thead>
+<tr>
+<th style="width:1%; text-align:center">IdFilm</th>
+<th style="width:1%; text-align:center">IdMedium</th>
+<th style="width:30%">Фильм</th>
+<th style="width:30%">Тип носителя</th>
+<th style="width:30%">Стоимость</th>
+</tr>
+</thead>
+<tbody>
+  <% 
+  i=0;
+filmsMediumsItems.forEach(function (item, index){
+  i++;
+  if (i<filmsMediumsItems.length){
+if (filmsMediumsItems[i-1].IdFilm!==filmsMediumsItems[i].IdFilm){
+    %>
+<tr> 
+<td  class="td1"><%= filmsMediumsItems[i-1].IdFilm %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].IdMedium %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].NameFilm %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].NameMediumFilms %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].Stoim %></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="">Изменить</a>
+<a href ="">Удалить</a>
+</td>
+   </tr>
+  <% 
+}
+}
+}); %>
+<tr> 
+<td  class="td1"><%= filmsMediumsItems[i-1].IdFilm %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].IdMedium %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].NameFilm %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].NameMediumFilms %></td>
+<td  class="td2"><%= filmsMediumsItems[i-1].Stoim %></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="">Изменить</a>
+<a href ="">Удалить</a>
+</td>
+   </tr>
+  </tbody>
+  </table>
+  <% }else{ %>
+  <p><strong> Фильмы отсутсвуют </strong></p>
+  <% } %>
+  </div>
+  </div>  
+<div> 
+  <select>
+   
+    <%
+      i=0;
+       filmsMediumsItems.forEach(function (item, index){  
+      i++;
+      k=0;
+      console.log(filmsMediumsItems.length);
+      console.log(i);
+      if (i<filmsMediumsItems.length){ 
+      if (filmsMediumsItems[i-1].MediumType!=filmsMediumsItems[0].MediumType){ 
+             
+         %> 
+        <option><%= item.MediumType %></option>
+        <% }}}); %>
+      </select>
+    </div> 
+<div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value=<%= filmsMediumsItems.length %>;">
+      </div>
+     </div>
+
+</body>
+</html>

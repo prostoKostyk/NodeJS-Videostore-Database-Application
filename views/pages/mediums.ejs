@@ -1,0 +1,42 @@
+<% include ../partials/style %>
+<% include ../stuff/UpMenu %>
+<br>
+<div class="=">
+<div class="col s12">
+<% if (MediumsItems.length > 0) { %>
+<table class="table1"> 
+<thead>
+<tr>
+<th style="width:1%; text-align:center">ID</th>
+<th style="width:49%">Тип носителя</th>
+</tr>
+</thead>
+<tbody>
+
+<% MediumsItems.forEach(function (item, index){ %>
+<tr> 
+<td  class="td1"><%= item.IdMedium %></td>
+<td  class="td2"><%= item.MediumType %></td>
+<td  class="td2"></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="">Изменить</a>
+<a href ="">Удалить</a>
+</td>
+   </tr>
+
+   <% }); %>
+  </tbody>
+  </table>
+  <% }else{ %>
+  <p><strong> Фильмы отсутсвуют </strong></p>
+  <% } %>
+  </div>
+  </div>  
+<div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value=<%= MediumsItems.length %>;">
+      </div>
+     </div>
+
+</body>
+</html>

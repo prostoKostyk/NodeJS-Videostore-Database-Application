@@ -22,7 +22,7 @@
 <td  class="td2"><%= item.GenreFilm %></td>
 <td  class="td2"></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
-<a href ="/element/edit/<%= item.IdFilm %>" >Изменить</a>
+<a href ="/element/edit/<%= item.IdFilm %>">Изменить</a>
 <a href ="/element/delete/<%= item.IdFilm %>">Удалить</a>
 </td>
    </tr>
@@ -37,12 +37,11 @@
   </div>  
 <div class ="">
       <div class ="col s12">
-         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value= <%= items.length %>;">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value=<%= items.length %>;">
       </div>
      </div>
 
 <% include ../pages/add-element%>
-
-
+<% include ../pages/add-element%>
 </body>
 </html>

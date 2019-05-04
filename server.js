@@ -108,8 +108,31 @@ app.post('/element/edit/:IdFilm',function(req,res){
             }
         });
         });
-    
 
+        app.get('/filmsMediums/add', function (req, res){
+            res.render('pages/add-filmsMediums.ejs',{
+            siteTitle : siteTitle,
+            pagesTitle : "Add new note",
+            items : ''
+                });
+        });
+        app.post('/filmsMediums/add',function(req,res){
+        var query= "INSERT INTO `filmsmediums` ( IdFilmMedium, NameFilmMedium, NameMediumFilm) Values (";
+        query+= " '"+req.body.IdFilmMedium+"',";
+        query+= " '"+req.body.NameFilmMedium+"',";
+        query+= " '"+req.body.NameMediumFilm+"')";
+        con.query(query, function(err, result) {
+            res.redirect(filmsMediumsURL);
+        });
+        });
+
+        app.get('/filmsMediums/delete/:IdFilmMedium',function(req, res){
+            con.query("DELETE FROM `videostore`.`filmsmediums` WHERE (`IdFilmMedium` = '"+req.params.IdFilmMedium+"');", function(err, result){
+            if (result.affectedRows){
+                res.redirect(filmsMediumsURL);
+                }
+            });
+            });
 var server = app.listen(5000,function(){
 console.log('Сервер находится на localhost:5000');
 });

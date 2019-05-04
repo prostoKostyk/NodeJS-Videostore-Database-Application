@@ -1,0 +1,47 @@
+<html>
+<head>
+<% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/navbar %>
+<% include ../partials/style %>
+<div  class="FormFilmMediumAdd" id="FormFilmMediumAdd">
+<div class="row" style="margin-left:30px; margin-right:30px">
+<form action="http://localhost:5000/filmsMediums/add" method="post" class="col s12">
+    <label for="ID" class="col-2 col-form-label">ID</label>
+    <div class="col-10">
+        <input type="text" name="IdFilmMedium" id="IdFilmMedium" class="form-control">
+    </div>
+    <div>Выберите фильм <select name='NameFilmMedium'>
+              <%
+                for (i=0;i<filmsMediumsItemsClean2.length; i++){  %>
+                  <option><%= filmsMediumsItemsClean2[i].NameFilm %></option> 
+                  <%            
+                }
+                %>
+                </select>
+              </div> 
+              <div> 
+                  Выберите носитель <select name='NameMediumFilm'>
+                    <%
+                      for (i=0;i<filmsMediumsItemsClean3.length; i++){  %>
+                        <option><%= filmsMediumsItemsClean3[i].MediumType %></option> 
+                        <%            
+                      }
+                      %>
+                      </select>
+              </div>
+<input type="submit" name='submit' value="Сохранить запись" class="Button1">
+<div class ="">
+        <div class ="col s12">
+           <input type="button" class="Button2" value="Отмена" onclick="document.getElementById('FormFilmMediumAdd').style.display ='none';">
+        </div>
+       </div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</body>
+</html>

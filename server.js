@@ -52,7 +52,7 @@ MediumsItems : MediumsResult
 const filmsMediumsSiteTitle = "Фильмы на носителях";
 const filmsMediumsURL = "http://localhost:5000/filmsMediums";
 app.get('/filmsMediums', function (filmsMediumsReq, filmsMediumsRes){
-con.query('SELECT * FROM `filmsMediums`, `mediums`', function (filmsMediumsErr, filmsMediumsResult){
+con.query('SELECT * FROM `filmsMediums`, `mediums`, `films`', function (filmsMediumsErr, filmsMediumsResult){
 filmsMediumsRes.render('pages/filmsMediums',{
 filmsMediumsSiteTitle : filmsMediumsSiteTitle,
 filmsMediumsTitle : "Event list",

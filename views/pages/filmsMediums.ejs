@@ -22,11 +22,12 @@
     var filmsMediumsItemsClean = removeDuplicates(filmsMediumsItems, 'IdFilmMedium');
     var filmsMediumsItemsClean2 = removeDuplicates(filmsMediumsItems, 'NameFilm');
     var filmsMediumsItemsClean3 = removeDuplicates(filmsMediumsItems, 'MediumType');
+    console.log(filmsMediumsItemsClean3);
 if (filmsMediumsItemsClean.length > 1) { %>
 <table class="table1"> 
 <thead>
 <tr>
-<th style="width:1%; text-align:center">IdFilm</th>
+<th class = "IdHide" style="width:1%; text-align:center">Id</th>
 <th style="width:30%">Фильм</th>
 <th style="width:30%">Тип носителя</th>
 <th style="width:30%">Стоимость</th>
@@ -34,15 +35,26 @@ if (filmsMediumsItemsClean.length > 1) { %>
 </thead>
 <tbody>
   <% 
-  i=0;
-for (i=0; i<filmsMediumsItemsClean.length; i++){
+  let NumberOfMedium;
+  let NumderOfFilm;
+for (let i=0; i<filmsMediumsItemsClean.length; i++){
   if (filmsMediumsItemsClean[i].IdFilmMedium>0){
   %>
 <tr> 
 <td  class="td1"><%= filmsMediumsItemsClean[i].IdFilmMedium %></td>
 <td  class="td2"><%= filmsMediumsItemsClean[i].NameFilmMedium %></td>
 <td  class="td2"><%= filmsMediumsItemsClean[i].NameMediumFilm %></td>
-<td  class="td2"><%= filmsMediumsItemsClean[i].StoimFilmMedium %></td>
+<%for (g=0; g<filmsMediumsItemsClean3.length; g++){
+ if (filmsMediumsItemsClean3[g].MediumType==filmsMediumsItemsClean[i].NameMediumFilm) {
+  NumberOfMedium=g;
+ }
+}
+for (g=0; g<filmsMediumsItemsClean2.length; g++){
+ if (filmsMediumsItemsClean2[g].NameFilm==filmsMediumsItemsClean[i].NameFilmMedium) {
+  NumderOfFilm=g;
+ }
+} %>
+<td  class="td2"><%= filmsMediumsItemsClean3[NumberOfMedium].StoimMedium + filmsMediumsItemsClean2[NumderOfFilm].StoimFilm %></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="">Изменить</a>
 <a href ="/filmsMediums/delete/<%= filmsMediumsItemsClean[i].IdFilmMedium %>">Удалить</a>
@@ -61,7 +73,8 @@ for (i=0; i<filmsMediumsItemsClean.length; i++){
  
 <div class ="">
       <div class ="col s12">
-         <input type="button" class="Button1" value="Добавить новую запись" onclick="document.getElementById('FormFilmMediumAdd').style.display ='block'; document.getElementById('IdFilmMedium').value=<%= filmsMediumsItemsClean.length+2 %>;">
+         <input type="button" class="Button1" value="Добавить новую запись" onclick="document.getElementById('FormFilmMediumAdd').style.display ='block';
+          document.getElementById('IdFilmMedium').value=<%=filmsMediumsItemsClean[filmsMediumsItemsClean.length-1].IdFilmMedium+1%>;">
       </div>
      </div>
      <% include ../pages/add-filmsMediums%>

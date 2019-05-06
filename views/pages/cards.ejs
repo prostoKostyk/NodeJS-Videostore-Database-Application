@@ -1,0 +1,45 @@
+<% include ../partials/style %>
+<% include ../stuff/UpMenu %>
+<br>
+<div class="=">
+<div class="col s12">
+<% if (CardsItems.length > 0) { %>
+<table class="table1"> 
+<thead>
+<tr>
+<th class="IdHide" style="width:1%; text-align:center">ID</th>
+<th style="width:49%">Тип карты</th>
+<th style="width:49%">Скидка по карте</th>
+</tr>
+</thead>
+<tbody>
+
+<% 
+CardsItems.forEach(function (item, index){ %>
+<tr> 
+<td  class="td1"><%= item.IdCard %></td>
+<td  class="td2"><%= item.TypeCard%></td>
+<td  class="td2"><%= item.SaleCard %></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="/client/edit/<%= CardsItems.IdClient %>">Изменить</a>
+<a href ="/client/delete/<%= CardsItems.IdClient %>">Удалить</a>
+</td>
+   </tr>
+
+   <% }); %>
+  </tbody>
+  </table>
+  <% }else{ %>
+  <p><strong> Фильмы отсутсвуют </strong></p>
+  <% } %>
+  </div>
+  </div>  
+<div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить нового клиента" onclick="document.getElementById('FormFilmAdd').style.display ='block';
+          document.getElementById('IdCard').value=<%=CardsItems[CardsItems.length-1].IdCard+1; %>">
+      </div>
+     </div>
+
+</body>
+</html>

@@ -60,8 +60,43 @@ filmsMediumsItems : filmsMediumsResult,
 });
 });
 });
+const ClientsSiteTitle = "Клиенты";
+const ClientsURL = "http://localhost:5000/clients";
+app.get('/clients', function (ClientsReq, ClientsRes){
+con.query('SELECT * FROM `clients`', function (ClientsErr, ClientsResult){
+ClientsRes.render('pages/clients',{
+ClientsSiteTitle : ClientsSiteTitle,
+ClientsTitle : "Event list",
+ClientsItems : ClientsResult
+});
+});
+});
+
+const CardsSiteTitle = "Скидочные карты";
+const CardsURL = "http://localhost:5000/cards";
+app.get('/cards', function (CardsReq, CardsRes){
+con.query('SELECT * FROM `cards`', function (CardsErr, CardsResult){
+CardsRes.render('pages/cards',{
+CardsSiteTitle : CardsSiteTitle,
+CardsTitle : "Event list",
+CardsItems : CardsResult
+});
+});
+});
+
+const RentalaccountingSiteTitle = "Учет выдачи фильмов";
+const RentalaccountingURL = "http://localhost:5000/rentalaccounting";
+app.get('/rentalaccounting', function (RentalaccountingReq, RentalaccountingRes){
+con.query('SELECT * FROM `rentalaccounting`', function (RentalaccountingErr, RentalaccountingResult){
+RentalaccountingRes.render('pages/rentalaccounting',{
+RentalaccountingSiteTitle : RentalaccountingSiteTitle,
+RentalaccountingTitle : "Event list",
+RentalaccountingItems : RentalaccountingResult
+});
+});
+});
 /*
-Доавление нового элемента
+Доавление нового фильма
 */
 
 app.get('/element/add', function (req, res){
@@ -109,6 +144,33 @@ app.post('/element/edit/:IdFilm',function(req,res){
         });
         });
 
+   // Добавление носителей   
+
+   app.get('/medium/add', function (req, res){
+    res.render('pages/add-medium.ejs',{
+    siteTitle : siteTitle,
+    pagesTitle : "Add new medium",
+    items : ''
+        });
+});
+app.post('/medium/add',function(req,res){
+var query= "INSERT INTO `mediums` (IdMedium, MediumType, StoimMedium) Values (";
+query+= " '"+req.body.IdMedium+"',";
+query+= " '"+req.body.MediumType+"',";
+query+= " '"+req.body.StoimMedium+"')";
+con.query(query, function(err, result) {
+    res.redirect(MediumsURL);
+});
+});
+// Удаление носителей
+app.get('/medium/delete/:IdMedium',function(req, res){
+ con.query("DELETE FROM `videostore`.`mediums` WHERE (`IdMedium` = '"+req.params.IdMedium+"');", function(err, result){
+if (result.affectedRows){
+  res.redirect(MediumsURL);
+    }
+    });
+ });
+
         app.get('/filmsMediums/add', function (req, res){
             res.render('pages/add-filmsMediums.ejs',{
             siteTitle : siteTitle,
@@ -117,10 +179,11 @@ app.post('/element/edit/:IdFilm',function(req,res){
                 });
         });
         app.post('/filmsMediums/add',function(req,res){
-        var query= "INSERT INTO `filmsmediums` ( IdFilmMedium, NameFilmMedium, NameMediumFilm) Values (";
+        var query= "INSERT INTO `filmsmediums` ( IdFilmMedium, NameFilmMedium, NameMediumFilm, StoimFilmMedium) Values (";
         query+= " '"+req.body.IdFilmMedium+"',";
         query+= " '"+req.body.NameFilmMedium+"',";
-        query+= " '"+req.body.NameMediumFilm+"')";
+        query+= " '"+req.body.NameMediumFilm+"',";
+        query+= " '"+req.body.StoimFilmMedium+"')";
         con.query(query, function(err, result) {
             res.redirect(filmsMediumsURL);
         });

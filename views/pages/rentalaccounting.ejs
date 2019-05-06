@@ -1,0 +1,56 @@
+<% include ../partials/style %>
+<% include ../stuff/UpMenu %>
+<br>
+<div class="=">
+<div class="col s12">
+<% if (RentalaccountingItems.length > 0) { %>
+<table class="table1"> 
+<thead>
+<tr>
+<th class="IdHide" style="width:1%; text-align:center">ID</th>
+<th style="width:15%">ФИО клиента</th>
+<th style="width:10%">Название фильма</th>
+<th style="width:10%">Носитель</th>
+<th style="width:10%">Скидочная карта</th>
+<th style="width:13%">Цена</th>
+<th style="width:10%">Дата взятия</th>
+<th style="width:10%">Дата возврата</th>
+<th style="width:10%">Пенни</th>
+</tr>
+</thead>
+<tbody>
+
+<% RentalaccountingItems.forEach(function (item, index){ %>
+<tr> 
+<td  class="td1"><%= item.IdRental %></td>
+<td  class="td2"><%= item.NameClientRental %></td>
+<td  class="td2"><%= item.NameFilmRental %></td>
+<td  class="td1"><%= item.NameMediumRental %></td>
+<td  class="td2"><%= item.NameCardRental %></td>
+<td  class="td2"><%= item.TotalPriceRental %></td>
+<td  class="td1"><%= item.DateTakenRental %></td>
+<td  class="td2"><%= item.DateReturnRental %></td>
+<td  class="td2"><%= item.FineRental %></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="">Изменить</a>
+<a href ="/medium/delete/<%= item.IdRental %>">Удалить</a>
+</td>
+   </tr>
+
+   <% }); %>
+  </tbody>
+  </table>
+  <% }else{ %>
+  <p><strong> Фильмы отсутсвуют </strong></p>
+  <% } %>
+  </div>
+  </div>  
+<div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; 
+         document.getElementById('IdRental').value=<%=RentalaccountingItems[RentalaccountingItems.length-1].IdRental+1;  %>;">
+      </div>
+     </div>
+     <% include ../pages/add-Rentalaccounting%>
+</body>
+</html>

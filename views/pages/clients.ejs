@@ -1,0 +1,47 @@
+<% include ../partials/style %>
+<% include ../stuff/UpMenu %>
+<br>
+<div class="=">
+<div class="col s12">
+<% if (ClientsItems.length > 0) { %>
+<table class="table1"> 
+<thead>
+<tr>
+<th class="IdHide" style="width:1%; text-align:center">ID</th>
+<th style="width:32%">ФИО</th>
+<th style="width:32%">Дата рождения</th>
+<th style="width:32%">Скидочная карта</th>
+</tr>
+</thead>
+<tbody>
+
+<% 
+ ClientsItems.forEach(function (item, index){ %>
+<tr> 
+<td  class="td1"><%= item.IdClient %></td>
+<td  class="td2"><%= item.NameClient %></td>
+<td  class="td2"><%= item.BirthdayClient %></td>
+<td  class="td2"><%= item.TypeCardClient %></td>
+<td solspan = "2" style ="width: 20%; text-align:center">
+<a href ="/client/edit/<%= ClientsItems.IdClient %>">Изменить</a>
+<a href ="/client/delete/<%= ClientsItems.IdClient %>">Удалить</a>
+</td>
+   </tr>
+
+   <% }); %>
+  </tbody>
+  </table>
+  <% }else{ %>
+  <p><strong> Фильмы отсутсвуют </strong></p>
+  <% } %>
+  </div>
+  </div>  
+<div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить нового клиента" onclick="document.getElementById('FormFilmAdd').style.display ='block';
+          document.getElementById('IdClient').value=<%=ClientsItems[ClientsItems.length-1].IdClient+1; %>">
+      </div>
+     </div>
+
+</body>
+</html>

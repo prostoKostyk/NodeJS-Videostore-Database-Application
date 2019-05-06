@@ -7,8 +7,9 @@
 <table class="table1"> 
 <thead>
 <tr>
-<th style="width:1%; text-align:center">ID</th>
+<th class="IdHide" style="width:1%; text-align:center">ID</th>
 <th style="width:49%">Тип носителя</th>
+<th style="width:49%">Стоимость</th>
 </tr>
 </thead>
 <tbody>
@@ -17,10 +18,11 @@
 <tr> 
 <td  class="td1"><%= item.IdMedium %></td>
 <td  class="td2"><%= item.MediumType %></td>
+<td  class="td2"><%= item.StoimMedium %></td>
 <td  class="td2"></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="">Изменить</a>
-<a href ="">Удалить</a>
+<a href ="/medium/delete/<%= item.IdMedium %>">Удалить</a>
 </td>
    </tr>
 
@@ -34,9 +36,10 @@
   </div>  
 <div class ="">
       <div class ="col s12">
-         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value=<%= MediumsItems.length %>;">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; 
+         document.getElementById('IdMedium').value=<%=MediumsItems[MediumsItems.length-1].IdMedium+1;  %>;">
       </div>
      </div>
-
+     <% include ../pages/add-medium%>
 </body>
 </html>

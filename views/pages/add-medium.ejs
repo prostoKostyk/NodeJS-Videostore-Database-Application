@@ -1,0 +1,36 @@
+
+<% include ../partials/style %>
+<div  class="FormFilmAdd" id="FormFilmAdd">
+<div class="row" style="margin-left:30px; margin-right:30px">
+<form action="http://localhost:5000/medium/add" method="post" class="col s12">
+    <div class="form-group row">
+            <label for="ID" class="IdHide">ID</label>
+            <div class="col-10">
+                <input type="text" name="IdMedium" id="IdMedium" class="IdHide">
+            </div>
+        </div>
+<div class="form-group row">
+    <label for="MediumType" class="col-2 col-form-label">Тип носителя</label>
+    <div class="col-10">
+        <input type="text" name="MediumType" value="" class="form-control">
+    </div>
+</div>
+<div class="form-group row">
+        <label for="StoimMedium" class="col-2 col-form-label">Стоимость</label>
+        <div class="col-10"></div>
+        <input type="text" name="StoimMedium" value="" class="form-control">
+<input type="submit" name='submit' value="Сохранить носитель" class="Button1">
+<div class ="">
+        <div class ="col s12">
+           <input type="button" class="Button2" value="Отмена" onclick="document.getElementById('FormFilmAdd').style.display ='none';">
+        </div>
+       </div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+
+</body>
+</html>

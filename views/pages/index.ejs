@@ -8,7 +8,7 @@
 <table class="table1"> 
 <thead>
 <tr>
-<th style="width:1%; text-align:center">ID</th>
+<th class="IdHide" style="width:1%; text-align:center">ID</th>
 <th style="width:49%">Название фильма</th>
 <th style="width:49%">Жанр</th>
 </tr>
@@ -36,8 +36,10 @@
   </div>
   </div>  
 <div class ="">
+      <%console.log(items[items.length-1]); %>
       <div class ="col s12">
-         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; document.getElementById('IdFilm').value=<%= items.length %>;">
+         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block';
+          document.getElementById('IdFilm').value=<%=items[items.length-1].IdFilm+1; %>">
       </div>
      </div>
 

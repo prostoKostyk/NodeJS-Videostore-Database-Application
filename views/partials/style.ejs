@@ -1,8 +1,10 @@
 <style>
     body{
         background-color: white;
+        background-image: url(/images/фон.jpg);
+        background-repeat:space;
     }
-        *{border-radius: 2px !important}
+        
         .btn{
             position: absolute;
             top: 371px;
@@ -11,15 +13,21 @@
             }
         .td1{
             width:1%;
-             border-style:solid; 
+            border:4px solid rgb(38, 38, 39); 
              padding:3px; 
              text-align:center; 
+         //   display:none;
         }
+        .IdHide{
+        //display:none;   
+       }
         .td2{
             width: 49%;
-            border-style: solid; 
+            border:4px solid rgb(38, 38, 39); 
             padding: 3px; 
             text-align: center;
+            
+            font-size: 18px;
         }
         .table1{
         width: 99%;
@@ -27,7 +35,8 @@
             padding: 3px; 
             text-align: center;
         } 
-.Button1 {
+        
+ .Button1 {
   position: absolute;
   display: inine-block;
   text-decoration: none;
@@ -40,8 +49,8 @@
   font-family: 'Montserrat', sans-serif;
   color: black;
   background-color:lawngreen;
-    border: 2px solid black;
-    border-radius: 25px;
+    border: 2px solid rgb(38, 38, 39);
+    border-radius: 5px;
 }
 .Button2 {
   position: absolute;
@@ -55,9 +64,9 @@
   font-weight: bold;
   font-family: 'Montserrat', sans-serif;
   color: black;
-  background-color:red;
-    border: 2px solid black;
-    border-radius: 25px;
+  background-color:rgb(182, 11, 0);
+  border: 2px solid rgb(38, 38, 39);
+  border-radius: 5px;
 }
 .FormFilmAdd{
     position: absolute;   
@@ -74,6 +83,7 @@
     top: 60%;
     display:none;
 } 
+
 .hello1
 {
 	/*background:linear-gradient(to right, skyblue -50%, purple 150%);*/
@@ -90,10 +100,11 @@
 	margin-left: 200px;
 }
 .razmermenu{
-    /*background:linear-gradient(to right, skyblue -50%, purple 150%);*/
-    max-height:  100px;
-    margin: 0 auto;
-
+    height:  42px;
+    width: 100%;    
+    min-width: 600px;
+    background-color: rgb(38, 38, 39);
+   
 }
 .razmermenu a
 {  
@@ -101,12 +112,15 @@
 	text-decoration: none;
 	font-size: 20px;
 	max-height:  100px;
-    width: 400px;
-padding: 2
+    width: 100px;
+    color:snow;
+    padding: 2px;
+    
 }
 .razmermenu1
 {
-    
-    width: 100%; 
+    position:relative;
+   
+    top: -15px;
 }
 </style>

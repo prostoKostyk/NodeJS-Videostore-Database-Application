@@ -22,7 +22,6 @@
     var filmsMediumsItemsClean = removeDuplicates(filmsMediumsItems, 'IdFilmMedium');
     var filmsMediumsItemsClean2 = removeDuplicates(filmsMediumsItems, 'NameFilm');
     var filmsMediumsItemsClean3 = removeDuplicates(filmsMediumsItems, 'MediumType');
-    console.log(filmsMediumsItemsClean3);
 if (filmsMediumsItemsClean.length > 1) { %>
 <table class="table1"> 
 <thead>
@@ -44,7 +43,7 @@ for (let i=0; i<filmsMediumsItemsClean.length; i++){
 <td  class="td1"><%= filmsMediumsItemsClean[i].IdFilmMedium %></td>
 <td  class="td2"><%= filmsMediumsItemsClean[i].NameFilmMedium %></td>
 <td  class="td2"><%= filmsMediumsItemsClean[i].NameMediumFilm %></td>
-<%for (g=0; g<filmsMediumsItemsClean3.length; g++){
+<% for (g=0; g<filmsMediumsItemsClean3.length; g++){
  if (filmsMediumsItemsClean3[g].MediumType==filmsMediumsItemsClean[i].NameMediumFilm) {
   NumberOfMedium=g;
  }
@@ -53,7 +52,8 @@ for (g=0; g<filmsMediumsItemsClean2.length; g++){
  if (filmsMediumsItemsClean2[g].NameFilm==filmsMediumsItemsClean[i].NameFilmMedium) {
   NumderOfFilm=g;
  }
-} %>
+} 
+%>
 <td  class="td2"><%= filmsMediumsItemsClean3[NumberOfMedium].StoimMedium + filmsMediumsItemsClean2[NumderOfFilm].StoimFilm %></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="">Изменить</a>

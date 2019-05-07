@@ -87,7 +87,7 @@ CardsItems : CardsResult
 const RentalaccountingSiteTitle = "Учет выдачи фильмов";
 const RentalaccountingURL = "http://localhost:5000/rentalaccounting";
 app.get('/rentalaccounting', function (RentalaccountingReq, RentalaccountingRes){
-con.query('SELECT * FROM `rentalaccounting`', function (RentalaccountingErr, RentalaccountingResult){
+con.query('SELECT * FROM `rentalaccounting`, `clients`, `filmsmediums`, `films`, `mediums`', function (RentalaccountingErr, RentalaccountingResult){
 RentalaccountingRes.render('pages/rentalaccounting',{
 RentalaccountingSiteTitle : RentalaccountingSiteTitle,
 RentalaccountingTitle : "Event list",
@@ -196,6 +196,31 @@ if (result.affectedRows){
                 }
             });
             });
+
+                app.get('/rentalaccounting/add', function (req, res){
+                res.render('pages/add-rentalaccounting.ejs',{
+                siteTitle : siteTitle,
+                pagesTitle : "Add new note",
+                items : ''
+                    });
+            });
+            app.post('/rentalaccounting/add',function(req,res){
+            var query= "INSERT INTO `rentalaccounting` ( IdRental, NameClientRental, NameFilmRental) Values (";
+            query+= " '"+req.body.IdRental+"',";
+            query+= " '"+req.body.NameClientRental+"',";
+            query+= " '"+req.body.NameFilmRental+"')";
+            con.query(query, function(err, result) {
+                res.redirect(RentalaccountingURL);
+            });
+            });
+    
+            app.get('/rentalaccounting/delete/:IdRental',function(req, res){
+                con.query("DELETE FROM `videostore`.`rentalaccounting` WHERE (`IdRental` = '"+req.params.IdRental+"');", function(err, result){
+                if (result.affectedRows){
+                    res.redirect(RentalaccountingURL);
+                    }
+                });
+                });
 var server = app.listen(5000,function(){
 console.log('Сервер находится на localhost:5000');
 });

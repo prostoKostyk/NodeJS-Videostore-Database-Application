@@ -1,0 +1,46 @@
+<html>
+<head>
+<% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/navbar %>
+<% include ../partials/style %>
+<div  class="FormRentalaccountingAdd" id="FormRentalaccountingAdd">
+<div class="row" style="margin-left:30px; margin-right:30px">
+<form action="http://localhost:5000/rentalaccounting/add" method="post" class="col s12">
+    <label for="ID" class="col-2 col-form-label">ID</label>
+    <div class="col-10">
+        <input type="text" name="IdRental" id="IdRental" class="form-control">
+    </div>
+    <div>Выберите клиента <select name='NameClientRental'>
+              <%
+                for (i=0;i<RentalaccountingItemsClean2.length; i++){  %>
+                  <option><%= RentalaccountingItemsClean2[i].NameClient %></option> 
+                  <%            
+                }
+                %>
+                </select>
+              </div> 
+              <div>Выберите фильм на носителе<select name='NameFilmRental'>
+                <%
+                  for (i=1;i<RentalaccountingItemsClean3.length; i++){  %>
+                    <option><%= RentalaccountingItemsClean3[i].NameFilmMedium + " на " + RentalaccountingItemsClean3[i].NameMediumFilm%></option> 
+                    <%            
+                  }
+                  %>
+                  </select>
+                </div>
+<input type="submit" name='submit' value="Сохранить запись" class="Button1">
+<div class ="">
+        <div class ="col s12">
+           <input type="button" class="Button2" value="Отмена" onclick="document.getElementById('FormFilmMediumAdd').style.display ='none';">
+        </div>
+       </div>
+</div>
+</div>
+</form>
+
+</div>
+</div>
+</body>
+</html>

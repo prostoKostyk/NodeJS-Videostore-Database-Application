@@ -3,7 +3,32 @@
 <br>
 <div class="=">
 <div class="col s12">
-<% if (RentalaccountingItems.length > 0) { %>
+<% 
+function removeDuplicates(originalArray, objKey) {
+   var trimmedArray = [];
+   var values = [];
+   var value;
+ 
+   for(var i = 0; i < originalArray.length; i++) {
+     value = originalArray[i][objKey];
+ 
+     if(values.indexOf(value) === -1) {
+       trimmedArray.push(originalArray[i]);
+       values.push(value);
+     }
+   }
+       return trimmedArray;
+ }
+ var RentalaccountingItemsClean = removeDuplicates(RentalaccountingItems, 'IdRental');
+ var RentalaccountingItemsClean2 = removeDuplicates(RentalaccountingItems, 'IdClient');
+ var RentalaccountingItemsClean3 = removeDuplicates(RentalaccountingItems, 'IdFilmMedium');
+    var filmsMediumsItemsClean4 = removeDuplicates(RentalaccountingItems, 'NameFilm');
+    var filmsMediumsItemsClean5 = removeDuplicates(RentalaccountingItems, 'MediumType');
+ console.log(RentalaccountingItemsClean3);
+ let NumberOfNameMediumFilm;
+ let schet=0;
+
+if (RentalaccountingItemsClean.length > 0) { %>
 <table class="table1"> 
 <thead>
 <tr>
@@ -19,38 +44,57 @@
 </tr>
 </thead>
 <tbody>
-
-<% RentalaccountingItems.forEach(function (item, index){ %>
+<%   for (let i=0; i<RentalaccountingItemsClean.length; i++){ 
+   schet=0; %>
 <tr> 
-<td  class="td1"><%= item.IdRental %></td>
-<td  class="td2"><%= item.NameClientRental %></td>
-<td  class="td2"><%= item.NameFilmRental %></td>
-<td  class="td1"><%= item.NameMediumRental %></td>
-<td  class="td2"><%= item.NameCardRental %></td>
-<td  class="td2"><%= item.TotalPriceRental %></td>
-<td  class="td1"><%= item.DateTakenRental %></td>
-<td  class="td2"><%= item.DateReturnRental %></td>
-<td  class="td2"><%= item.FineRental %></td>
+<td  class="td1"><%= RentalaccountingItemsClean[i].IdRental %></td>
+<td  class="td2"><%= RentalaccountingItemsClean[i].NameClientRental %></td>
+<td  class="td2"><%= RentalaccountingItemsClean[i].NameFilmRental %></td>
+<td  class="td1"><%= RentalaccountingItemsClean[i].NameMediumRental %></td>
+<td  class="td2"><%= RentalaccountingItemsClean[i].NameCardRental %></td>
+<%for (g=0; g<RentalaccountingItemsClean3.length; g++){
+   let VotEtoVot=RentalaccountingItemsClean3[g].NameFilmMedium + " на " + RentalaccountingItemsClean3[g].NameMediumFilm;
+   if (schet==0) {
+      if (VotEtoVot==RentalaccountingItemsClean[i].NameFilmRental){
+    NumberOfNameMediumFilm=g;
+    schet = 1;
+    console.log(NumberOfNameMediumFilm);
+   }
+}
+  } %>
+<td  class="td2"><%= RentalaccountingItemsClean3[NumberOfNameMediumFilm].StoimFilmMedium %></td>
+<td  class="td1"><%= RentalaccountingItemsClean[i].DateTakenRental %></td>
+<td  class="td2"><%= RentalaccountingItemsClean[i].DateReturnRental %></td>
+<td  class="td2"><%= RentalaccountingItemsClean[i].FineRental %></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="">Изменить</a>
-<a href ="/medium/delete/<%= item.IdRental %>">Удалить</a>
+<a href ="/rentalaccounting/delete/<%= RentalaccountingItemsClean[i].IdRental %>">Удалить</a>
 </td>
    </tr>
 
-   <% }); %>
+   <% }; %>
   </tbody>
   </table>
   <% }else{ %>
   <p><strong> Фильмы отсутсвуют </strong></p>
   <% } %>
   </div>
-  </div>  
+  </div>
+ <% if (RentalaccountingItemsClean.length > 0) { %>  
 <div class ="">
       <div class ="col s12">
-         <input type="button" class="Button1" value="Добавить новый фильм" onclick="document.getElementById('FormFilmAdd').style.display ='block'; 
-         document.getElementById('IdRental').value=<%=RentalaccountingItems[RentalaccountingItems.length-1].IdRental+1;  %>;">
+         <input type="button" class="Button1" value="Добавить новую запись" onclick="document.getElementById('FormRentalaccountingAdd').style.display ='block'; 
+         document.getElementById('IdRental').value=<%=RentalaccountingItemsClean[RentalaccountingItemsClean.length-1].IdRental+1;  %>;">
       </div>
      </div>
-     <% include ../pages/add-Rentalaccounting%>
+<%}else { %>
+   <div class ="">
+      <div class ="col s12">
+         <input type="button" class="Button1" value="Добавить новую запись" onclick="document.getElementById('FormRentalaccountingAdd').style.display ='block'; 
+         document.getElementById('IdRental').value=<%='0'%>;">
+      </div>
+     </div>
+<% } %>
+     <% include ../pages/add-Rentalaccounting %>
 </body>
 </html>

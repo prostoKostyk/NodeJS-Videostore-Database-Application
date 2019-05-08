@@ -21,15 +21,24 @@
                 %>
                 </select>
               </div> 
-              <div>Выберите фильм на носителе<select name='NameFilmRental'>
+              <div>Выберите фильм<select name='NameFilmRental'>
                 <%
-                  for (i=1;i<RentalaccountingItemsClean3.length; i++){  %>
-                    <option><%= RentalaccountingItemsClean3[i].NameFilmMedium + " на " + RentalaccountingItemsClean3[i].NameMediumFilm%></option> 
+                  for (i=0;i<RentalaccountingItemsClean4.length; i++){  %>
+                    <option><%= RentalaccountingItemsClean4[i].NameFilm %></option> 
                     <%            
                   }
                   %>
                   </select>
                 </div>
+                <div>Выберите носитель<select name='NameMediumRental'>
+                  <%
+                    for (i=0;i<RentalaccountingItemsClean5.length; i++){  %>
+                      <option><%=RentalaccountingItemsClean5[i].MediumType %></option> 
+                      <%            
+                    }
+                    %>
+                    </select>
+                  </div>
 <input type="submit" name='submit' value="Сохранить запись" class="Button1">
 <div class ="">
         <div class ="col s12">

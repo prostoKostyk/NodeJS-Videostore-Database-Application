@@ -87,7 +87,7 @@ CardsItems : CardsResult
 const RentalaccountingSiteTitle = "Учет выдачи фильмов";
 const RentalaccountingURL = "http://localhost:5000/rentalaccounting";
 app.get('/rentalaccounting', function (RentalaccountingReq, RentalaccountingRes){
-con.query('SELECT * FROM `rentalaccounting`, `clients`, `filmsmediums`, `films`, `mediums`', function (RentalaccountingErr, RentalaccountingResult){
+con.query('SELECT * FROM `rentalaccounting`, `clients`, `filmsmediums`, `films`, `mediums`, `cards`', function (RentalaccountingErr, RentalaccountingResult){
 RentalaccountingRes.render('pages/rentalaccounting',{
 RentalaccountingSiteTitle : RentalaccountingSiteTitle,
 RentalaccountingTitle : "Event list",
@@ -205,10 +205,11 @@ if (result.affectedRows){
                     });
             });
             app.post('/rentalaccounting/add',function(req,res){
-            var query= "INSERT INTO `rentalaccounting` ( IdRental, NameClientRental, NameFilmRental) Values (";
+            var query= "INSERT INTO `rentalaccounting` ( IdRental, NameClientRental, NameFilmRental, NameMediumRental) Values (";
             query+= " '"+req.body.IdRental+"',";
             query+= " '"+req.body.NameClientRental+"',";
-            query+= " '"+req.body.NameFilmRental+"')";
+            query+= " '"+req.body.NameFilmRental+"',";
+            query+= " '"+req.body.NameMediumRental+"')";
             con.query(query, function(err, result) {
                 res.redirect(RentalaccountingURL);
             });

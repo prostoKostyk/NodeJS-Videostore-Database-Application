@@ -9,8 +9,9 @@
 <thead>
 <tr>
 <th class="IdHide" style="width:1%; text-align:center">ID</th>
-<th style="width:49%">Название фильма</th>
-<th style="width:49%">Жанр</th>
+<th style="width:33%">Название фильма</th>
+<th style="width:33%">Жанр</th>
+<th style="width:32%">Стоимость</th>
 </tr>
 </thead>
 <tbody>
@@ -20,6 +21,7 @@
 <td  class="td1"><%= item.IdFilm %></td>
 <td  class="td2"><%= item.NameFilm %></td>
 <td  class="td2"><%= item.GenreFilm %></td>
+<td  class="td2"><%= item.StoimFilm %></td>
 <td  class="td2"></td>
 <td solspan = "2" style ="width: 20%; text-align:center">
 <a href ="/element/edit/<%= item.IdFilm %>">Изменить</a>
